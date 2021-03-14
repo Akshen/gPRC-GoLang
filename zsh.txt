@@ -1,0 +1,9 @@
+#CMD to install
+brew install protobuf
+go get -u google.golang.org/grpc
+go get -u github.com/golang/protobuf/protoc-gen-go
+
+# zsh profile settings for Go-gRPC
+export GO_PATH=~/go
+export PATH=$PATH:/$GO_PATH/bin
+
