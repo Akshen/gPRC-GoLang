@@ -21,10 +21,10 @@ func main() {
 	c := calpb.NewCalServiceClient(cc)
 	//fmt.Printf("Created Client: %f", c)
 	//doUnary(c)
-
 	//doServerStreaming(c)
+	//doClientStreaming(c)
 
-	doClientStreaming(c)
+	doBiDiStreaming(c)
 
 }
 
@@ -85,4 +85,49 @@ func doClientStreaming(c calpb.CalServiceClient) {
 		log.Fatalf("Error encountered while recieving response...%v", err)
 	}
 	fmt.Printf("Average Response....%v\n", res)
+}
+
+func doBiDiStreaming(c calpb.CalServiceClient) {
+	fmt.Println("Starting todo a BiDi streaming....")
+	//we create a stream by invoking the client
+	stream, err := c.FindMaximum(context.Background())
+	if err != nil {
+		log.Fatalf("Error while creating stream: %v", err)
+		return
+	}
+
+	requests := []int32{13, 4, 5, 16, 8, 88, 9, 34}
+
+	waitc := make(chan struct{})
+	//we send a bunch of messages to the client (go rountine)
+	go func() {
+		// function to send a bunch of messages
+		for _, req := range requests {
+			fmt.Printf("Sending message: %v\n", req)
+			stream.Send(&calpb.FindMaximumRequest{
+				Number: req,
+			})
+			time.Sleep(1000 * time.Millisecond)
+		}
+		stream.CloseSend()
+	}()
+
+	go func() {
+		// function to recieve a bunch of messages
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				log.Fatalf("Error while recieving the msg %v", err)
+				break
+			}
+			fmt.Printf("Received: %v\n", res.GetMaxNumber())
+		}
+		close(waitc)
+	}()
+
+	//block until everything is done
+	<-waitc
 }
