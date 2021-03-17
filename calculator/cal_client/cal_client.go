@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 
 	"github.com/gRPC-GoLang/calculator/calpb"
@@ -18,7 +19,10 @@ func main() {
 	defer cc.Close()
 	c := calpb.NewCalServiceClient(cc)
 	//fmt.Printf("Created Client: %f", c)
-	doUnary(c)
+	//doUnary(c)
+
+	doServerStreaming(c)
+
 }
 
 func doUnary(c calpb.CalServiceClient) {
@@ -29,7 +33,28 @@ func doUnary(c calpb.CalServiceClient) {
 	}
 	res, err := c.Calculation(context.Background(), req)
 	if err != nil {
-		log.Fatalf("Error while calling Greet RPC %v", err)
+		log.Fatalf("Error while calling  RPC %v", err)
 	}
-	log.Printf("Response from Greet: %v", res.Result)
+	log.Printf("Response from cal: %v", res.Result)
+}
+
+func doServerStreaming(c calpb.CalServiceClient) {
+	fmt.Println("Client service started.......")
+	req := &calpb.PrimeNoDecompositionRequest{
+		Number: 120,
+	}
+	resStream, err := c.PrimeNoDecomposition(context.Background(), req)
+	if err != nil {
+		log.Fatalf("Error")
+	}
+	for {
+		msg, err := resStream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("Error while reading stream %v:", err)
+		}
+		log.Printf("Response from GreetManyTimes: %v", msg.GetResult())
+	}
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strconv"
 
 	"github.com/gRPC-GoLang/calculator/calpb"
 	"google.golang.org/grpc"
@@ -21,6 +22,26 @@ func (*server) Calculation(ctx context.Context, req *calpb.CalRequest) (*calpb.C
 		Result: result,
 	}
 	return res, nil
+}
+
+func (*server) PrimeNoDecomposition(req *calpb.PrimeNoDecompositionRequest, stream calpb.CalService_PrimeNoDecompositionServer) error {
+	fmt.Println("PrimeNumberDecomposition function was invoked.....")
+	number := req.GetNumber()
+	var k int32 = 2
+	s := ""
+	for number > 1 {
+		if number%k == 0 { // if k evenly divides into N
+			s += strconv.Itoa(int(k)) + " "
+			number /= k
+		} else {
+			k += 1
+		}
+	}
+	res := &calpb.PrimeNoDecompositionResponse{
+		Result: s,
+	}
+	stream.Send(res)
+	return nil
 }
 
 func main() {
