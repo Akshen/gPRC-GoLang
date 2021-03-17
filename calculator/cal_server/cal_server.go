@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"strconv"
@@ -42,6 +43,28 @@ func (*server) PrimeNoDecomposition(req *calpb.PrimeNoDecompositionRequest, stre
 	}
 	stream.Send(res)
 	return nil
+}
+
+func (*server) CalAverageofNumbers(stream calpb.CalService_CalAverageofNumbersServer) error {
+	fmt.Printf("Calculate Average function was invoked.....\n")
+	idx := 0
+	var result int32 = 0
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			result /= int32(idx)
+			return stream.SendAndClose(&calpb.CalAverageofNumbersResponse{
+				Result: result,
+			})
+		}
+
+		if err != nil {
+			log.Fatalf("Error while reading client stream %v", err)
+		}
+		number := req.GetNumber()
+		idx++
+		result += number
+	}
 }
 
 func main() {

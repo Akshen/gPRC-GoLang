@@ -21,10 +21,21 @@ message PrimeNoDecompositionResponse{
     string result = 1;
 }
 
+message CalAverageofNumbersRequest {
+    int32 number = 1;
+}
+
+message CalAverageofNumbersResponse {
+    int32 result = 1;
+}
+
 service CalService{
     //Unary
     rpc Calculation(calRequest) returns (calResponse) {};
 
     //Server Streaming
     rpc PrimeNoDecomposition(PrimeNoDecompositionRequest) returns (stream PrimeNoDecompositionResponse) {};
+
+    //Client streaming
+    rpc CalAverageofNumbers(stream CalAverageofNumbersRequest) returns (CalAverageofNumbersResponse) {};
 }
