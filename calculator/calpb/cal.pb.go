@@ -220,6 +220,100 @@ func (x *PrimeNoDecompositionResponse) GetResult() string {
 	return ""
 }
 
+type CalAverageofNumbersRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Number int32 `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+}
+
+func (x *CalAverageofNumbersRequest) Reset() {
+	*x = CalAverageofNumbersRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_calculator_calpb_cal_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CalAverageofNumbersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CalAverageofNumbersRequest) ProtoMessage() {}
+
+func (x *CalAverageofNumbersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_calpb_cal_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CalAverageofNumbersRequest.ProtoReflect.Descriptor instead.
+func (*CalAverageofNumbersRequest) Descriptor() ([]byte, []int) {
+	return file_calculator_calpb_cal_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *CalAverageofNumbersRequest) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type CalAverageofNumbersResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result int32 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *CalAverageofNumbersResponse) Reset() {
+	*x = CalAverageofNumbersResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_calculator_calpb_cal_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CalAverageofNumbersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CalAverageofNumbersResponse) ProtoMessage() {}
+
+func (x *CalAverageofNumbersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_calpb_cal_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CalAverageofNumbersResponse.ProtoReflect.Descriptor instead.
+func (*CalAverageofNumbersResponse) Descriptor() ([]byte, []int) {
+	return file_calculator_calpb_cal_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *CalAverageofNumbersResponse) GetResult() int32 {
+	if x != nil {
+		return x.Result
+	}
+	return 0
+}
+
 var File_calculator_calpb_cal_proto protoreflect.FileDescriptor
 
 var file_calculator_calpb_cal_proto_rawDesc = []byte{
@@ -239,21 +333,34 @@ var file_calculator_calpb_cal_proto_rawDesc = []byte{
 	0x22, 0x36, 0x0a, 0x1c, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x6f, 0x44, 0x65, 0x63, 0x6f, 0x6d,
 	0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xbd, 0x01, 0x0a, 0x0a, 0x43, 0x61, 0x6c,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x43, 0x61, 0x6c, 0x63, 0x75,
-	0x6c, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x16, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61,
-	0x74, 0x6f, 0x72, 0x2e, 0x63, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17,
-	0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x63, 0x61, 0x6c, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x6d, 0x0a, 0x14, 0x50, 0x72, 0x69,
-	0x6d, 0x65, 0x4e, 0x6f, 0x44, 0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f,
-	0x6e, 0x12, 0x27, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50,
-	0x72, 0x69, 0x6d, 0x65, 0x4e, 0x6f, 0x44, 0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74,
-	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x63, 0x61, 0x6c,
-	0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x6f, 0x44,
-	0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x42, 0x12, 0x5a, 0x10, 0x63, 0x61, 0x6c, 0x63,
-	0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2f, 0x63, 0x61, 0x6c, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x34, 0x0a, 0x1a, 0x43, 0x61, 0x6c, 0x41,
+	0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x6f, 0x66, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x22, 0x35,
+	0x0a, 0x1b, 0x43, 0x61, 0x6c, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x6f, 0x66, 0x4e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a,
+	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x72,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xa9, 0x02, 0x0a, 0x0a, 0x43, 0x61, 0x6c, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x43, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x12, 0x16, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72,
+	0x2e, 0x63, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x63, 0x61,
+	0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x63, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x6d, 0x0a, 0x14, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e,
+	0x6f, 0x44, 0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x27,
+	0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x69, 0x6d,
+	0x65, 0x4e, 0x6f, 0x44, 0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c,
+	0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x6f, 0x44, 0x65, 0x63, 0x6f,
+	0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x6a, 0x0a, 0x13, 0x43, 0x61, 0x6c, 0x41, 0x76, 0x65, 0x72,
+	0x61, 0x67, 0x65, 0x6f, 0x66, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x12, 0x26, 0x2e, 0x63,
+	0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x43, 0x61, 0x6c, 0x41, 0x76, 0x65,
+	0x72, 0x61, 0x67, 0x65, 0x6f, 0x66, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f,
+	0x72, 0x2e, 0x43, 0x61, 0x6c, 0x41, 0x76, 0x65, 0x72, 0x61, 0x67, 0x65, 0x6f, 0x66, 0x4e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28,
+	0x01, 0x42, 0x12, 0x5a, 0x10, 0x63, 0x61, 0x6c, 0x63, 0x75, 0x6c, 0x61, 0x74, 0x6f, 0x72, 0x2f,
+	0x63, 0x61, 0x6c, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -268,20 +375,24 @@ func file_calculator_calpb_cal_proto_rawDescGZIP() []byte {
 	return file_calculator_calpb_cal_proto_rawDescData
 }
 
-var file_calculator_calpb_cal_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_calculator_calpb_cal_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_calculator_calpb_cal_proto_goTypes = []interface{}{
 	(*CalRequest)(nil),                   // 0: calculator.calRequest
 	(*CalResponse)(nil),                  // 1: calculator.calResponse
 	(*PrimeNoDecompositionRequest)(nil),  // 2: calculator.PrimeNoDecompositionRequest
 	(*PrimeNoDecompositionResponse)(nil), // 3: calculator.PrimeNoDecompositionResponse
+	(*CalAverageofNumbersRequest)(nil),   // 4: calculator.CalAverageofNumbersRequest
+	(*CalAverageofNumbersResponse)(nil),  // 5: calculator.CalAverageofNumbersResponse
 }
 var file_calculator_calpb_cal_proto_depIdxs = []int32{
 	0, // 0: calculator.CalService.Calculation:input_type -> calculator.calRequest
 	2, // 1: calculator.CalService.PrimeNoDecomposition:input_type -> calculator.PrimeNoDecompositionRequest
-	1, // 2: calculator.CalService.Calculation:output_type -> calculator.calResponse
-	3, // 3: calculator.CalService.PrimeNoDecomposition:output_type -> calculator.PrimeNoDecompositionResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: calculator.CalService.CalAverageofNumbers:input_type -> calculator.CalAverageofNumbersRequest
+	1, // 3: calculator.CalService.Calculation:output_type -> calculator.calResponse
+	3, // 4: calculator.CalService.PrimeNoDecomposition:output_type -> calculator.PrimeNoDecompositionResponse
+	5, // 5: calculator.CalService.CalAverageofNumbers:output_type -> calculator.CalAverageofNumbersResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -341,6 +452,30 @@ func file_calculator_calpb_cal_proto_init() {
 				return nil
 			}
 		}
+		file_calculator_calpb_cal_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CalAverageofNumbersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_calculator_calpb_cal_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CalAverageofNumbersResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -348,7 +483,7 @@ func file_calculator_calpb_cal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_calculator_calpb_cal_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -378,6 +513,8 @@ type CalServiceClient interface {
 	Calculation(ctx context.Context, in *CalRequest, opts ...grpc.CallOption) (*CalResponse, error)
 	//Server Streaming
 	PrimeNoDecomposition(ctx context.Context, in *PrimeNoDecompositionRequest, opts ...grpc.CallOption) (CalService_PrimeNoDecompositionClient, error)
+	//Client streaming
+	CalAverageofNumbers(ctx context.Context, opts ...grpc.CallOption) (CalService_CalAverageofNumbersClient, error)
 }
 
 type calServiceClient struct {
@@ -429,12 +566,48 @@ func (x *calServicePrimeNoDecompositionClient) Recv() (*PrimeNoDecompositionResp
 	return m, nil
 }
 
+func (c *calServiceClient) CalAverageofNumbers(ctx context.Context, opts ...grpc.CallOption) (CalService_CalAverageofNumbersClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CalService_serviceDesc.Streams[1], "/calculator.CalService/CalAverageofNumbers", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &calServiceCalAverageofNumbersClient{stream}
+	return x, nil
+}
+
+type CalService_CalAverageofNumbersClient interface {
+	Send(*CalAverageofNumbersRequest) error
+	CloseAndRecv() (*CalAverageofNumbersResponse, error)
+	grpc.ClientStream
+}
+
+type calServiceCalAverageofNumbersClient struct {
+	grpc.ClientStream
+}
+
+func (x *calServiceCalAverageofNumbersClient) Send(m *CalAverageofNumbersRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *calServiceCalAverageofNumbersClient) CloseAndRecv() (*CalAverageofNumbersResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(CalAverageofNumbersResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // CalServiceServer is the server API for CalService service.
 type CalServiceServer interface {
 	//Unary
 	Calculation(context.Context, *CalRequest) (*CalResponse, error)
 	//Server Streaming
 	PrimeNoDecomposition(*PrimeNoDecompositionRequest, CalService_PrimeNoDecompositionServer) error
+	//Client streaming
+	CalAverageofNumbers(CalService_CalAverageofNumbersServer) error
 }
 
 // UnimplementedCalServiceServer can be embedded to have forward compatible implementations.
@@ -446,6 +619,9 @@ func (*UnimplementedCalServiceServer) Calculation(context.Context, *CalRequest) 
 }
 func (*UnimplementedCalServiceServer) PrimeNoDecomposition(*PrimeNoDecompositionRequest, CalService_PrimeNoDecompositionServer) error {
 	return status.Errorf(codes.Unimplemented, "method PrimeNoDecomposition not implemented")
+}
+func (*UnimplementedCalServiceServer) CalAverageofNumbers(CalService_CalAverageofNumbersServer) error {
+	return status.Errorf(codes.Unimplemented, "method CalAverageofNumbers not implemented")
 }
 
 func RegisterCalServiceServer(s *grpc.Server, srv CalServiceServer) {
@@ -491,6 +667,32 @@ func (x *calServicePrimeNoDecompositionServer) Send(m *PrimeNoDecompositionRespo
 	return x.ServerStream.SendMsg(m)
 }
 
+func _CalService_CalAverageofNumbers_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(CalServiceServer).CalAverageofNumbers(&calServiceCalAverageofNumbersServer{stream})
+}
+
+type CalService_CalAverageofNumbersServer interface {
+	SendAndClose(*CalAverageofNumbersResponse) error
+	Recv() (*CalAverageofNumbersRequest, error)
+	grpc.ServerStream
+}
+
+type calServiceCalAverageofNumbersServer struct {
+	grpc.ServerStream
+}
+
+func (x *calServiceCalAverageofNumbersServer) SendAndClose(m *CalAverageofNumbersResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *calServiceCalAverageofNumbersServer) Recv() (*CalAverageofNumbersRequest, error) {
+	m := new(CalAverageofNumbersRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _CalService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "calculator.CalService",
 	HandlerType: (*CalServiceServer)(nil),
@@ -505,6 +707,11 @@ var _CalService_serviceDesc = grpc.ServiceDesc{
 			StreamName:    "PrimeNoDecomposition",
 			Handler:       _CalService_PrimeNoDecomposition_Handler,
 			ServerStreams: true,
+		},
+		{
+			StreamName:    "CalAverageofNumbers",
+			Handler:       _CalService_CalAverageofNumbers_Handler,
+			ClientStreams: true,
 		},
 	},
 	Metadata: "calculator/calpb/cal.proto",

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"time"
 
 	"github.com/gRPC-GoLang/calculator/calpb"
 	"google.golang.org/grpc"
@@ -21,7 +22,9 @@ func main() {
 	//fmt.Printf("Created Client: %f", c)
 	//doUnary(c)
 
-	doServerStreaming(c)
+	//doServerStreaming(c)
+
+	doClientStreaming(c)
 
 }
 
@@ -57,4 +60,29 @@ func doServerStreaming(c calpb.CalServiceClient) {
 		}
 		log.Printf("Response from GreetManyTimes: %v", msg.GetResult())
 	}
+}
+
+func doClientStreaming(c calpb.CalServiceClient) {
+	fmt.Println("Starting todo a client streaming service....")
+
+	stream, err := c.CalAverageofNumbers(context.Background())
+	if err != nil {
+		log.Fatalf("Error while calling CalAverageofNumber function %v", err)
+	}
+
+	requests := []int32{3, 4, 5, 6, 8}
+
+	for _, req := range requests {
+		fmt.Printf("Sending requests...%v\n", req)
+		stream.Send(&calpb.CalAverageofNumbersRequest{
+			Number: req,
+		})
+		time.Sleep(1000 * time.Millisecond)
+	}
+	res, err := stream.CloseAndRecv()
+
+	if err != nil {
+		log.Fatalf("Error encountered while recieving response...%v", err)
+	}
+	fmt.Printf("Average Response....%v\n", res)
 }
