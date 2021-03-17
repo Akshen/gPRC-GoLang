@@ -28,12 +28,12 @@ func (*server) GreetManyTimes(req *greetpb.GreetManyTimesRequest, stream greetpb
 	fmt.Println("GreetManyTimes function was invoked.....")
 	firstName := req.GetGreeting().GetFirstName()
 	for i := 0; i < 10; i++ {
-		result := "Hello " + firstName + "number " + strconv.Itoa(i)
+		result := "Hello " + firstName + " number " + strconv.Itoa(i)
 		res := &greetpb.GreetManyTimesResponse{
 			Result: result,
 		}
 		stream.Send(res)
-		time.Sleep(1000 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	}
 	return nil
 }
