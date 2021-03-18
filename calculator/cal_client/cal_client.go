@@ -9,6 +9,8 @@ import (
 
 	"github.com/gRPC-GoLang/calculator/calpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func main() {
@@ -23,8 +25,9 @@ func main() {
 	//doUnary(c)
 	//doServerStreaming(c)
 	//doClientStreaming(c)
+	//doBiDiStreaming(c)
 
-	doBiDiStreaming(c)
+	doErrorUnary(c)
 
 }
 
@@ -130,4 +133,34 @@ func doBiDiStreaming(c calpb.CalServiceClient) {
 
 	//block until everything is done
 	<-waitc
+}
+
+func doErrorUnary(c calpb.CalServiceClient) {
+	fmt.Println("starting the doError function")
+	//correct call
+	dosqrtcall(c, 10)
+	//error call
+	dosqrtcall(c, -10)
+}
+
+func dosqrtcall(c calpb.CalServiceClient, n int32) {
+	res, err := c.SquareRoot(context.Background(), &calpb.SquareRootRequest{
+		Number: n,
+	})
+	if err != nil {
+		respErr, ok := status.FromError(err)
+		if ok {
+			//actual error from gRPC (user error)
+			fmt.Println("Error message from server", respErr.Message())
+			fmt.Println(respErr.Code())
+			if respErr.Code() == codes.InvalidArgument {
+				fmt.Println("We probably sent a negative number!")
+				return
+			}
+		} else {
+			log.Fatalf("Big Error calling SquareRoot %v", err)
+			return
+		}
+	}
+	fmt.Printf("Results of Square Root of number %v is %v\n", n, res.GetNumberRoot())
 }
